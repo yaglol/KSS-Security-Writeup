@@ -8,5 +8,5 @@ It contains very much crypto-stuff but on a easy level, perfect for me.
 
 This CTF was solved on Windows and using alsmost only web-based encode/decoders
 
-find more of my content on www.yaglol.com
-or at                      twitter.com/yagloool
+# find more of my content on www.yaglol.com
+# or at                      www.twitter.com/yagloool
