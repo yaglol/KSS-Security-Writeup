@@ -1,0 +1,389 @@
+////// KILLSWITCHSECURITY CTF-WRITEUP \\\\\\
+            https://killswitchsecurity.cf/ctfhome.html
+
+
+// Level 1
+  CTRL+U
+"...
+ <br>
+<a href="ctfhome.html">home</a>
+<a href="lvl2.html">next</a>
+<!-- flag is "Level1-sffsssf_olhj.M" -->
+</p>
+..."
+
+Flag 1 = Level1-sffsssf_olhj.M
+
+// Level 2
+  CTRL+U
+"...
+</p>
+<script>
+a = String.fromCharCode(102, 108, 97, 103, 32, 105, 115, 32, 34, 76, 101, 118, 101, 108, 50, 45, 115, 106, 115, 106, 115, 106, 106, 103, 102, 121, 116, 95, 111, 98, 104, 106, 46, 117, 34)
+</script>
+</body>
+..."
+
+102, 108, 97, 103, 32, 105, 115, 32, 34, 76, 101, 118, 101, 108, 50, 45, 115, 106, 115, 106, 115, 106, 106, 103, 102, 121, 116, 95, 111, 98, 104, 106, 46, 117, 34
+// Looks like decimal to me
+
+// http://www.rapidtables.com/convert/number/ascii-hex-bin-dec-converter.htm
+// Using my favorite online encoder/decoder i paste this in the Decimal "box"
+
+** ASCII Output **
+"flag is "Level2-sjsjsjjgfyt_obhj.u""
+
+Flag 2 = Level2-sjsjsjjgfyt_obhj.u
+
+// Level 3
+  CTRL+U
+
+"...
+<script>
+a = String.fromCharCode(90, 109, 120, 104, 90, 121, 66, 112, 99, 121, 65, 105, 84, 71, 86, 50, 90, 87, 119, 122, 76, 88, 78, 113, 97, 50, 107, 52, 78, 122, 103, 51, 97, 86, 57, 118, 101, 72, 66, 120, 98, 83, 53, 75, 73, 103, 61, 61)
+</script>
+..."
+** Decimal again
+// This time the decimals turn out as a base64 string when decoded.
+
+** ASCII OUTPUT **
+ZmxhZyBpcyAiTGV2ZWwzLXNqa2k4Nzg3aV9veHBxbS5KIg==
+
+// I pasted the string into the Base64 "box"
+
+** ASCII OUTPUT **
+"flag is "Level3-sjki8787i_oxpqm.J""
+
+Flag 3 = Level3-sjki8787i_oxpqm.J
+
+// Level 4
+  CTRL+U
+
+"...
+<script>
+a = String.fromCharCode(76, 79, 76, 33, 32, 32, 110, 111, 116, 32, 116, 104, 105, 115, 32, 116, 105, 109, 101, 32, 58, 80)
+</script>
+<!-- this is my favi-rite ctf -->
+..."
+// Once again decimals
+
+** ASCII OUTPUT **
+"LOL!  not this time :P"
+// Damn, i got fooled.
+
+// We also have this HTML-Comment telling me "This is my favi-rite ctf"
+// So my first thought is the usual "favicon" image there use to be.
+
+// Inspecting the page-source at the top i see
+"<link rel="stylesheet" type="text/css" href="css/theme.css">
+ <link rel="shortcut icon" href="files/snake1.png" />"
+
+// This tells me there should be a directory named "files"
+
+https://killswitchsecurity.cf/files
+** Output **
+Icon  Name                    Last modified      Size  Description
+[PARENTDIR] Parent Directory                             -   [unknown item..]
+[IMG] snake1.png              2017-06-24 16:50   31K  Portable Network Graphic
+[TXT] flag.txt                2017-06-24 16:50   35   Plain text file
+
+// Opening "flag.txt" shows me "flag is "Level4-sddduiuiwqe_oxlm.Z""
+
+Flag 4 = Level4-sddduiuiwqe_oxlm.Z
+
+// Level 5
+  CTRL+U
+
+"...
+<p>
+This the fith level of the CTF! Why don't you take a look around and see what you can find?
+<br>
+<a href="lvl4.html">previous</a>
+<a href="ctfhome.html">home</a>
+<a href="lvl6.html">next</a>
+<!-- http://www.wordsforlife.org.uk/incy-wincy-spider -->
+</p>
+..."
+
+// Soo... There is a link to incy wincy spider.
+// This acutally took me a really long time to figure out, but then i got it.
+// So web robots are also called web-spiders and the file robots.txt is used
+// to tell the spiders what content of the site they are allowed to crawl.
+
+// So i went to https://killswitchsecurity.cf/robots.txt
+** Output **
+"User-agent: *
+Disallow: /dir/ "
+
+https://killswitchsecurity.cf/dir/
+** Output **
+Directory Listing
+
+Icon  Name                    Last modified      Size  Description
+[PARENTDIR] Parent Directory                             -   [unknown item..]
+[TXT] flag.txt                2017-06-24 16:50   34   Plain text file
+
+// Opening flag.txt gives me "flag is "Level5-sdffffkjjk_olkj.v""
+
+Flag 5 = Level5-sdffffkjjk_olkj.v
+
+// Level 6
+  CTRL+U
+
+"<img src="snake.png">
+</p>
+<img src="sbyqreanzrvfsvyrf2.png" />
+
+</center>
+<p>
+This the sixth level of the CTF! Why don't you take a look around and see what you can find?
+<br>
+<a href="lvl5.html">previous</a>
+"
+// So we are presented with a image containing a rotweiler and the number 13
+// The filename seems a bit strange, and since the image - i guess
+// we are dealing with a Rot.13 cipher.
+
+// I put the "sbyqreanzrvfsvyrf2" string into http://decode.org/
+** Output **
+"foldernameisfiles2"
+
+https://killswitchsecurity.cf/files2
+** Output **
+Directory Listing
+
+Icon  Name                    Last modified      Size  Description
+[PARENTDIR] Parent Directory                             -   [unknown item..]
+[TXT] flag.txt                2017-06-26 12:32   41   Plain text file
+
+// Opening flag.txt shows "<!-- flag is "Level6-dhdjuujk_lkj.e" -->"
+
+Flag 6 = Level6-dhdjuujk_lkj.e
+
+// Level 7
+  CTRL+U
+
+"...
+<script>
+var b = ("113, 118, 101, 114, 112")
+var c = ("103, 98, 101, 108, 32, 118, 102, 32, 112, 110, 121, 121, 114, 113, 34, 121, 98, 121, 115, 98, 121, 113, 114, 101, 34")
+var a = ("103, 117, 114, 32")
+</script>
+..."
+
+// Here they are, the decimals.
+// Since they are ordered in var a,b and c i decode the a first followed by b and then c
+
+// var A
+** ASCII OUTPUT **
+gur
+
+// var B
+** ASCII OUTPUT **
+qverp
+
+// var C
+** ASCII OUTPUT **
+gbel vf pnyyrq"ybysbyqre"
+
+// putting them together
+
+> gur qverp gbel vf pnyyrq"ybysbyqre
+
+// Out of nowhere i just tested the same rot13 decoder here.
+** Output **
+"the direc tory is called"lolfolder""
+
+https://killswitchsecurity.cf/lolfolder
+**Output* *
+Directory Listing
+
+Icon  Name                    Last modified      Size  Description
+[PARENTDIR] Parent Directory                             -   [unknown item..]
+[TXT] flag.txt                2017-06-29 11:13   22   Plain text file
+
+// flag.txt gives "Level7-glqyyyhuu_oof.n"
+
+Flag 7 = Level7-glqyyyhuu_oof.n
+
+// Level 8
+  CTRL-U
+
+"...
+This the eighth level of the CTF! Why don't you take a look around and see what you can find?
+<br>
+<a href="lvl7.html">previous</a>
+<a href="ctfhome.html">home</a>
+<a href="lvl9.html">next</a>
+<!-- <img src="qr.jpg"> -->
+</p>
+..."
+
+// Okay, so we have a qr code. Downloaded the image and upload it to
+// https://webqr.com/
+** Output **
+"Oh you thought It was that easy. passphrase:"5292c527e0e77b38813bc63bdac7ddd5""
+
+// Since i have some experience cracking hashes i could guess this was a md5 hash
+
+// Pasted the hash into https://hashkiller.co.uk/md5-decrypter.aspx
+
+** Output **
+"5292c527e0e77b38813bc63bdac7ddd5 MD5 : steghide"
+
+// Steghide is a program used to put files into images and extract files
+// from images using a passphrase. Read more about Steganography here:
+// https://en.wikipedia.org/wiki/Steganography
+
+// So i downloaded steghide and put it on my D: drive (since solving this on windows)
+
+// Open up CMD
+C:\WINDOWS\system32>D:
+
+D:\> cd steghide
+D:\steghide>steghide.exe --extract -sf qr.jpg
+Enter passphrase: steghide (since they gave us the passphrase in the md5)
+wrote extracted data to "secret.txt".
+
+// open up secret.txt
+** Output **
+"Level8-hlkreitnfl_ogdf.l"
+
+Flag 8 = Level8-hlkreitnfl_ogdf.l
+
+// Level 9
+  CTRL+U
+
+"...
+<a href="lvl10.html">next</a>
+<!-- (76, 105, 48, 116, 76, 83, 65, 116, 76, 105, 48, 116, 73, 67, 48, 117, 76, 105, 52, 103, 76, 83, 52, 103, 76, 83, 52, 103, 76, 83, 48, 117, 76, 105, 52, 103, 76, 83, 52, 116, 76, 105, 65, 116, 76, 105, 48, 116, 61, 61) -->
+</p>
+..."
+
+// MOAR DECIMALS.
+
+// Encryptig them gives us "Li0tLSAtLi0tIC0uLi4gLS4gLS4gLS0uLi4gLS4tLiAtLi0t=="
+// Wich is again, a base64 string.
+// For some reason i had to change to this site to decode it (or use base64 --decode in linux)
+// https://www.base64decode.org/
+** Output **
+".--- -.-- -... -. -. --... -.-. -.--"
+
+// And this is morse code, so time to encode AGAIN, from morse to ascii using
+// https://morsecode.scphillips.com/translator.html
+** Output **
+"JYBNN7CY"
+
+// So here i was stuck for a while, so i asked one of the creators for a clue
+// He told me to combine level 4 and 8.
+
+// So i went back to https://killswitchsecurity.cf/files
+// Found nothing there, inspected the source for lvl 9 again, and thinking
+// about the step we just did with steghide. I notice in the <head> HTML Section
+// the favicon is suddenly called "snake.jpg".
+// Going back and watching the other levels it has always been called "snake1.png"
+
+// So i download the file and put it in my steghide folder
+D:\steghide>steghide.exe --extract -sf snake.jpg
+Enter passphrase: JYBNN7CY (the morse we decoded)
+wrote extracted data to "secret.txt".
+
+// Opening secret.txt and boom "flag is "Level9-dioiozsss_qrrt.a""
+
+Flag 9 = Level9-dioiozsss_qrrt.a
+
+// Level 10
+  CTRL+U
+
+"...
+<a href="lvl11.html">next</a>
+<!-- SWYgeW91IG11c3QgYnJlYWsgdGhlIGxhdywgZG8gaXQgdG8gc2VpemUgcG93ZXI6IGluIGFsbCBvdGhlciBjYXNlcyBvYnNlcnZlIGl0Lg== -->
+<!-- cXZlIGFuenIgdmYgeWl5MTBxdmUga2V5IDEz== -->
+
+..."
+
+// Presented with two base64 strings. After cleaning up and decoding them
+** Output **
+"If you must break the law, do it to seize power: in all other cases observe"
+// From the first string, and the second one tells me:
+"qve anzr vf yiy10qve key 13"
+
+// I write down "key 13" and run the rest of the jibberish trough the rot13 decoder.
+** Output **
+"dir name is lvl10dir"
+
+// https://killswitchsecurity.cf/lvl10dir
+** Output **
+Icon  Name                    Last modified      Size  Description
+[PARENTDIR] Parent Directory                             -   [unknown item..]
+[TXT] stop.html               2017-07-04 14:36  933   Hypertext Markup Language
+
+// Opening stop.html
+** Output **
+"Stop! You are not allowed in here! Why haven't you gone yet?
+[Get Flag]"
+
+// Pressing the Get Flag button gives me:
+"Thought it would be that easy huh?
+/lvl10more/emblem.jpg
+Oh shit!"
+
+// https://killswitchsecurity.cf/lvl10more/emblem.jpg
+// Here i guess there is more steghide action waiting so same procedure as before
+
+D:\steghide>steghide.exe --extract -sf emblem.jpg
+Enter passphrase:13
+steghide: could not extract any data with that passphrase!
+// Dang! I thought the key was 13. (later found out the "key 13 was a clue to use rot13")
+
+// So i go back to the directory lvl10more
+// https://killswitchsecurity.cf/lvl10more
+** Output **
+Directory Listing
+
+Icon  Name                    Last modified      Size  Description
+[PARENTDIR] Parent Directory                             -   [unknown item..]
+[TXT] passphrase.txt          2017-07-01 08:27   10   Plain text file
+[IMG] emblem.jpg              2017-07-01 07:53   32K  Joint Photographics Experts Group
+
+// Open passphrase.txt
+** Output **
+"7k2jx8UPF"
+
+D:\steghide>steghide.exe --extract -sf emblem.jpg
+Enter passphrase: 7k2jx8UPF
+the file "secret.txt" does already exist. overwrite ? (y/n) y
+wrote extracted data to "secret.txt".
+
+// Opening secret.txt
+** Output **
+""/stop/flag.txt"
+
+// https://killswitchsecurity.cf/stop/flag.txt
+** Output **
+"Haha got yah LMAO"
+
+// Moving back to stop/ directory
+https://killswitchsecurity.cf/stop/
+** Output **
+Directory Listing
+
+Icon  Name                    Last modified      Size  Description
+[PARENTDIR] Parent Directory                             -   [unknown item..]
+[TXT] real flag.txt           2017-06-30 18:11  188   Plain text file
+[TXT] flag.txt                2017-06-30 14:55   17   Plain text file
+
+// opening real flag.txt
+** Output **
+"well done!
+I tried so hard to stop you :(
+but you have won!
+here take it: TGV2ZWwxMC1wcWhuY3N0aGJfeXV5anI2dWVzLnc==
+I hope it brings you joy!
+I hope it doesn't do to you what it did to me!"
+
+// A b64 string.. Encoding it.
+** Output **
+"Level10-pqhncsthb_yuyjr6ues.w"
+
+Flag 10 = Level10-pqhncsthb_yuyjr6ues.w
