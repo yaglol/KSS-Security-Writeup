@@ -2,7 +2,7 @@
 
 This is a web based CTF i found in a discord-server i recently joined. 
 
-The CTF is hosted over at https://killswitchsecurity.cf 
+The archived CTF is hosted over at https://ctf.kernal.xyz/ 
 
 It contains very much crypto-stuff but on a easy level, perfect for me.
 
